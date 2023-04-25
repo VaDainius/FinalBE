@@ -1,0 +1,14 @@
+  name: "Helmet-shop-BE"
+  services:
+    db:
+      image: mysql:5.7
+      restart: always
+      environment:
+        MYSQL_DATABASE: "helmetShop"
+        MYSQL_USER: "dainis"
+        MYSQL_PASSWORD: "pass"
+        MYSQL_ROOT_PASSWORD: "pass"
+      ports:
+        - 3306:3306
+      expose:
+        - 3306
