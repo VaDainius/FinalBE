@@ -50,5 +50,8 @@ public class Helmet {
         this.user = user;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "shopingCart_id", nullable = false)
+    private ShoppingCart shoppingCart;
 
 }
