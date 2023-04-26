@@ -50,5 +50,4 @@ public class HelmetController {
                 HttpStatus.OK);
     }
 
-    @PostMapping()
 }
