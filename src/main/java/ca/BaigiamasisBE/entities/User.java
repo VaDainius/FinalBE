@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -20,9 +22,18 @@ public class User {
     private Long id;
 
     @NonNull
+    @Column(length = 30, unique = true)
     private String username;
 
     @NonNull
+    @Column
     private String password;
+
+    @NonNull
+    @Column(nullable = false)
+    private String role;
+
+    @ManyToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Helmet> helmets = new HashSet<>();
 
 }

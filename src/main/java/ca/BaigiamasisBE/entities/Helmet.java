@@ -2,9 +2,7 @@ package ca.BaigiamasisBE.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
-import java.util.List;
 
 @Entity
 @Table(name = "helmets")
@@ -37,7 +35,20 @@ public class Helmet {
 
     @NonNull
     @Lob
-    private String description;
+    private String itemDescription;
+
+    @NonNull
+    private int price;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private User user;
+
+    private void setUser(User user) {
+        this.user = user;
+    }
 
 
 }
