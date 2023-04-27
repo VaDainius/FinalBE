@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelmetController {
@@ -28,26 +29,34 @@ public class HelmetController {
                 HttpStatus.OK
         );
     }
-
+    @GetMapping("/helmet/byId/{id}")
+    public ResponseEntity<Helmet> helmetById(@RequestParam int id) {
+        return new ResponseEntity<>(helmetRepository.findById(id), HttpStatus.OK
+        );
+    }
     @GetMapping("/helmet/{price}")
     public ResponseEntity<Helmet> helmetByPrice(@PathVariable int price) {
         return new ResponseEntity<>(helmetRepository.findByPrice(price),
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
     @GetMapping("/helmet/{type}")
     public ResponseEntity<Helmet> helmetByType (@PathVariable String type) {
         return new ResponseEntity<>(helmetRepository.findByType(type),
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
     @GetMapping("/helmet/{size}")
     public ResponseEntity<Helmet> helmetBySize (@PathVariable int size) {
         return new ResponseEntity<>(helmetRepository.findBySize(size),
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
     @GetMapping("/helmet/{color}")
     public ResponseEntity<Helmet> helmetByColor (@PathVariable String color) {
         return new ResponseEntity<>(helmetRepository.findByColor(color),
-                HttpStatus.OK);
+                HttpStatus.OK
+        );
     }
 
 }

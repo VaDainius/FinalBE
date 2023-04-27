@@ -16,36 +16,44 @@ public class Helmet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
+    @Column
     @NonNull
     private String type;
 
     @NonNull
+    @Column
     private String manufacturer;
 
     @NonNull
+    @Column
     private String model;
 
     @NonNull
+    @Column
     private int size;
 
     @NonNull
+    @Column
     private String status;
 
     @NonNull
+    @Column
     private String color;
 
     @NonNull
+    @Column
     @Lob
     private String itemDescription;
 
     @NonNull
+    @Column
     private int price;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "cart_helmet",
+            name = "user_helmet",
             joinColumns = @JoinColumn(name = "helmet_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
     )
@@ -54,10 +62,5 @@ public class Helmet {
     private Set<User> user = new HashSet<>();
 
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "shopingCart_id", nullable = false)
-    private ShoppingCart shoppingCart;
 
 }
