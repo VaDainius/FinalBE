@@ -3,6 +3,9 @@ package ca.BaigiamasisBE.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "helmets")
@@ -41,14 +44,17 @@ public class Helmet {
     private int price;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinTable(
+            name = "cart_helmet",
+            joinColumns = @JoinColumn(name = "helmet_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+    )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private User user;
+    private Set<User> user = new HashSet<>();
 
-    private void setUser(User user) {
-        this.user = user;
-    }
+
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "shopingCart_id", nullable = false)
