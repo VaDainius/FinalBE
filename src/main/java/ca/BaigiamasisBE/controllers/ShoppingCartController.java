@@ -40,12 +40,12 @@ public class ShoppingCartController {
         return "home";
     }
 
-    @PostMapping("/cart/add/{id}")
-    public String addToCart(@Valid Helmet helmet, BindingResult errors) {
-        if (errors.hasErrors()) {
-            return "/home";
-        }
-        cartRepository.save(helmet);
-        return "/home";
-    }
+//    @PostMapping("/cart/add/{id}")
+//    public String addToCart(@Valid Helmet helmet, BindingResult errors) {
+//        if (errors.hasErrors()) {
+//            return "/home";
+//        }
+//        cartRepository.save(helmet);
+//        return "/home";
+//    }
 }
