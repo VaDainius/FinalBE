@@ -35,7 +35,7 @@ public class ShoppingCartController {
         return "cart";
     }
     @DeleteMapping("/cart/delete/{id}")
-    public String deleteItem(@PathVariable long id) {
+    public String deleteItem(@PathVariable int id) {
         cartRepository.deleteById(id);
         return "home";
     }

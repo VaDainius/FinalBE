@@ -23,6 +23,12 @@ public class HomeController {
         this.helmetRepository = helmetRepository;
     }
 
+    @GetMapping("/user/{id}")
+    public String getUsers(int id) {
+        userRepository.findById(id);
+        return "/users";
+    }
+
 //    @GetMapping("/home")
 //    public String home(Model model) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
