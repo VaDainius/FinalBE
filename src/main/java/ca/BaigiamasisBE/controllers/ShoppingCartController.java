@@ -6,13 +6,16 @@ import ca.BaigiamasisBE.repositories.HelmetRepository;
 import ca.BaigiamasisBE.repositories.ShoppingCartRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ShoppingCartController {
@@ -27,25 +30,21 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/cart")
-    public String shoppingCart (Model model, BindingResult errors) {
-        if (errors.hasErrors()) {
-            return "home";
-        }
-        model.addAttribute(cartRepository.findAll());
-        return "cart";
-    }
-    @DeleteMapping("/cart/delete/{id}")
-    public String deleteItem(@PathVariable long id) {
-        cartRepository.deleteById(id);
-        return "home";
+    public ResponseEntity<List<ShoppingCart>> showAll(){
+        return new ResponseEntity<>(new ArrayList<>(cartRepository.findAll()),
+                HttpStatus.OK
+        );
     }
 
-//    @PostMapping("/cart/add/{id}")
-//    public String addToCart(@Valid Helmet helmet, BindingResult errors) {
-//        if (errors.hasErrors()) {
-//            return "/home";
-//        }
-//        cartRepository.save(helmet);
-//        return "/home";
+//    @PostMapping("/helmets")
+//    public ResponseEntity<ShoppingCart> addFromShopToCart(Helmet helmet) {
+//        var cartList = cartRepository.findAll();
+//        cartList.stream()
+//                .filter(i -> i.getHelmets().removeIf(helmet1 -> h))
 //    }
+    @DeleteMapping("/cart/delete/{id}")
+    public void deleteItem(@PathVariable int id) {
+        cartRepository.deleteById(id);
+    }
+
 }

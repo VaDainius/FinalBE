@@ -32,7 +32,7 @@ public class Helmet {
 
     @NonNull
     @Column
-    private int size;
+    private String  size;
 
     @NonNull
     @Column

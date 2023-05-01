@@ -5,8 +5,12 @@ import ca.BaigiamasisBE.entities.ShoppingCart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
+import java.util.List;
 
-//    ShoppingCart save(Helmet helmet);
+@Repository
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> {
+
+    ShoppingCart save(Helmet helmet);
+
+    List<ShoppingCart> addToCart(ShoppingCart cart);
 }

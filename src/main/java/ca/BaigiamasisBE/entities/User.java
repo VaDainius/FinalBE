@@ -19,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NonNull
     @Column(length = 30, unique = true)
@@ -31,7 +31,7 @@ public class User {
 
     @NonNull
     @Column(nullable = false)
-    private String role;
+    private Role role;
 
     @ManyToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Helmet> helmets = new HashSet<>();

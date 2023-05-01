@@ -16,7 +16,7 @@ public class ShoppingCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
