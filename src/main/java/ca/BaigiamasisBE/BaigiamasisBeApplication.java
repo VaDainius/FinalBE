@@ -1,6 +1,7 @@
 package ca.BaigiamasisBE;
 
 import ca.BaigiamasisBE.entities.Helmet;
+import ca.BaigiamasisBE.entities.Role;
 import ca.BaigiamasisBE.entities.User;
 import ca.BaigiamasisBE.repositories.HelmetRepository;
 import ca.BaigiamasisBE.repositories.ShoppingCartRepository;
@@ -30,14 +31,19 @@ public class BaigiamasisBeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 //		Set<Helmet> helmets = Set.of(
-//				new Helmet("motorcycle", "Shoei", "fx50", 5, "used","black","used, but mint condition",25),
-//				new Helmet("motorcycle", "AGV", "5x5x", 10, "new","gray","bought, but never used",50)
+//				new Helmet("motorcycle", "Shoei", "fx50", "S", "used","black","used, but mint condition",50),
+//				new Helmet("motorcycle", "AGV", "sp1", "M", "used","mixed","decent condition",70),
+//				new Helmet("bicycle", "Crivit", "-", "XL", "new","green","bought, never used",19),
+//				new Helmet("motorcycle", "Ilispan", "ultraMax-5000s", "XXL", "used","white","few minor scratches",20),
+//				new Helmet("racing", "Sparco", "-", "S", "used","white, red","brand new",400),
+//				new Helmet("bicycle", "-", "-", "L", "used","mixed","poor",5)
 //		);
 //		helmetRepository.saveAll(helmets);
-
+//
 //		Set<User> users = Set.of(
-//				new User("user", "pass", "ADMIN"),
-//				new User("use", "pssa", "USER")
+//				new User("admin", "admin", Role.ADMIN),
+//				new User("user", "user", Role.USER),
+//				new User("read", "reader",Role.READER)
 //		);
 //
 //		userRepository.saveAll(users);
