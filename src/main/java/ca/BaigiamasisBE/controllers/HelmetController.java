@@ -2,7 +2,6 @@ package ca.BaigiamasisBE.controllers;
 
 import ca.BaigiamasisBE.entities.Helmet;
 import ca.BaigiamasisBE.entities.Helmets;
-import ca.BaigiamasisBE.localization.HelmetService;
 import ca.BaigiamasisBE.repositories.HelmetRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
