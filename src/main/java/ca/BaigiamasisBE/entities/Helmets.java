@@ -15,7 +15,7 @@ public class Helmets {
     @NonNull
     private List<Helmet> helmets;
 
-    public static Helmets of (List<Helmet> helmets){
+    public static Helmets of (List<Helmet> helmets) {
         return new Helmets(helmets);
     }
 }

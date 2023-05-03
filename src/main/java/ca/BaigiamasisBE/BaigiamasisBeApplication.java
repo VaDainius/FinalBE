@@ -1,7 +1,6 @@
 package ca.BaigiamasisBE;
 
 import ca.BaigiamasisBE.entities.Helmet;
-import ca.BaigiamasisBE.entities.Role;
 import ca.BaigiamasisBE.entities.User;
 import ca.BaigiamasisBE.repositories.HelmetRepository;
 import ca.BaigiamasisBE.repositories.ShoppingCartRepository;
@@ -41,11 +40,10 @@ public class BaigiamasisBeApplication implements CommandLineRunner {
 //		helmetRepository.saveAll(helmets);
 //
 //		Set<User> users = Set.of(
-//				new User("admin", "admin", Role.ADMIN),
-//				new User("user", "user", Role.USER),
-//				new User("read", "reader",Role.READER)
+//				new User("admin", "admin","ADMIN"),
+//				new User("user", "user", "USER"),
+//				new User("read", "reader","READER")
 //		);
-//
 //		userRepository.saveAll(users);
 	}
 }
