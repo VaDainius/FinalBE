@@ -32,6 +32,7 @@ public class HelmetController {
     }
     @GetMapping("/helmet/price/{price}")
     public ResponseEntity<List<Helmet>> helmetByPrice(@PathVariable int price) {
+
         var helmetPriceList =helmetRepository.findByPrice(price);
         var helmetPriceStream = helmetPriceList
                 .stream()
