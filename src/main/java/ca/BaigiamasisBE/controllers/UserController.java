@@ -57,7 +57,11 @@ public class UserController {
         if (errors.hasErrors()) {
             throw new RuntimeException("Cannot create user");
         }
-        userRepository.save(user);
+        if(user.getRole().equalsIgnoreCase("")) {
+            user.setRole("USER");
+            userRepository.save(user);
+        }
+
         return new Response().getMessage();
     }
 

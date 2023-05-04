@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class BaigiamasisBeApplication implements CommandLineRunner {
@@ -29,21 +30,25 @@ public class BaigiamasisBeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		Set<Helmet> helmets = Set.of(
-//				new Helmet("motorcycle", "Shoei", "fx50", "S", "used","black","used, but mint condition",50),
-//				new Helmet("motorcycle", "AGV", "sp1", "M", "used","mixed","decent condition",70),
-//				new Helmet("bicycle", "Crivit", "-", "XL", "new","green","bought, never used",19),
-//				new Helmet("motorcycle", "Ilispan", "ultraMax-5000s", "XXL", "used","white","few minor scratches",20),
-//				new Helmet("racing", "Sparco", "-", "S", "used","white, red","brand new",400),
-//				new Helmet("bicycle", "-", "-", "L", "used","mixed","poor",5)
-//		);
-//		helmetRepository.saveAll(helmets);
-//
-//		Set<User> users = Set.of(
-//				new User("admin", "admin","ADMIN"),
-//				new User("user", "user", "USER"),
-//				new User("read", "reader","READER")
-//		);
-//		userRepository.saveAll(users);
+		if(helmetRepository.findAll().stream().toList().equals("")){
+			Set<Helmet> helmets = Set.of(
+					new Helmet("motorcycle", "Shoei", "fx50", "S", "used","black","used, but mint condition",50),
+					new Helmet("motorcycle", "AGV", "sp1", "M", "used","mixed","decent condition",70),
+					new Helmet("bicycle", "Crivit", "-", "XL", "new","green","bought, never used",19),
+					new Helmet("motorcycle", "Ilispan", "ultraMax-5000s", "XXL", "used","white","few minor scratches",20),
+					new Helmet("racing", "Sparco", "-", "S", "used","white, red","brand new",400),
+					new Helmet("bicycle", "-", "-", "L", "used","mixed","poor",5)
+			);
+			helmetRepository.saveAll(helmets);
+		}
+
+		if (userRepository.findAll().stream().toList().equals("")) {
+			Set<User> users = Set.of(
+					new User("admin", "admin","ADMIN"),
+					new User("user", "user", "USER"),
+					new User("read", "reader","READER")
+			);
+			userRepository.saveAll(users);
+		}
 	}
 }
