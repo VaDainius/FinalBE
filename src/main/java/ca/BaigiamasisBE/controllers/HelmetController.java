@@ -6,6 +6,7 @@ import ca.BaigiamasisBE.repositories.HelmetRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,11 @@ import java.util.stream.Collectors;
 @Controller
 public class HelmetController {
 
-    private final HelmetRepository helmetRepository;
+    private HelmetRepository helmetRepository;
     public HelmetController(@Autowired HelmetRepository helmetRepository) {
         this.helmetRepository = helmetRepository;
     }
+
 
     @GetMapping("/helmets")
     public ResponseEntity<Helmets> helmets() {
