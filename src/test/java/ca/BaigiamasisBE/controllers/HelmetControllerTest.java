@@ -6,7 +6,6 @@ import ca.BaigiamasisBE.repositories.HelmetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,7 +27,9 @@ public class HelmetControllerTest {
     @MockBean
     private HelmetRepository helmetRepository;
 
-    public HelmetControllerTest(@Autowired HelmetRepository helmetRepository, @Autowired HelmetController helmetController) {
+    public HelmetControllerTest(@Autowired HelmetRepository helmetRepository,
+                                @Autowired HelmetController helmetController
+    ) {
         this.helmetRepository = helmetRepository;
         this.helmetController = helmetController;
     }
@@ -57,14 +58,12 @@ public class HelmetControllerTest {
 
         when(helmetRepository.findAll()).thenReturn(helmetList);
         ResponseEntity<Helmets> responseEntity = helmetController.helmets();
-
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(helmetList, responseEntity.getBody().getHelmets());
-
     }
 
     @Test
-    public void whenAskedForHelmets_returnsByPrice() {
+    public void whenAskedForHelmets_returnsByPrice() throws Exception {
         int price = 70;
         List<Helmet> helmetList = new ArrayList<>();
         Helmet newHelmet = new Helmet(
@@ -73,12 +72,11 @@ public class HelmetControllerTest {
                 "white", "Used for 10 minutes",
                 70
         );
+
         helmetList.add(newHelmet);
         when(helmetRepository.findByPrice(price)).thenReturn(helmetList);
-
         ResponseEntity<List<Helmet>> responseEntity = helmetController.helmetByPrice(price);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-
         assertEquals(helmetList, responseEntity.getBody());
     }
 
@@ -92,6 +90,7 @@ public class HelmetControllerTest {
                 "white", "Used for 10 minutes",
                 70
         ));
+
         when(helmetRepository.findByType(type)).thenReturn(helmetList);
         ResponseEntity<List<Helmet>> responseEntity = helmetController.helmetByType(type.trim().toLowerCase());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -108,6 +107,7 @@ public class HelmetControllerTest {
                 "white", "Used for 10 minutes",
                 70
         ));
+
         when(helmetRepository.findBySize(size)).thenReturn(helmetList);
         ResponseEntity<List<Helmet>> responseEntity = helmetController.helmetBySize(size);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -123,7 +123,9 @@ public class HelmetControllerTest {
                 "az2", "L", "new",
                 "Black", "newer used",
                 90
-        ));        when(helmetRepository.findByColor(color)).thenReturn(helmetList);
+        ));
+
+        when(helmetRepository.findByColor(color)).thenReturn(helmetList);
         ResponseEntity<List<Helmet>> responseEntity = helmetController.helmetByColor(color);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(helmetList, responseEntity.getBody());

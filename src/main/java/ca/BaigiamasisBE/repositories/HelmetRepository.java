@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public interface HelmetRepository extends JpaRepository<Helmet, Integer> {
@@ -20,4 +21,8 @@ public interface HelmetRepository extends JpaRepository<Helmet, Integer> {
     List<Helmet> findBySize(String size);
 
     List<Helmet> findByColor(String color);
+
+    List<Helmet> findAll();
+
+    List<Helmet> findByManufacturerAndModel(String manufacturer, String model);
 }
