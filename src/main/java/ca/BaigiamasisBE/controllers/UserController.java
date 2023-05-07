@@ -21,14 +21,23 @@ import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
-    private final HelmetRepository helmetRepository;
+    private HelmetRepository helmetRepository;
 
-    public UserController(@Autowired UserRepository userRepository, @Autowired HelmetRepository helmetRepository) {
+//    public UserController (){
+//
+//    }
+    public UserController(@Autowired UserRepository userRepository,
+                          @Autowired HelmetRepository helmetRepository
+    ) {
         this.userRepository = userRepository;
         this.helmetRepository = helmetRepository;
     }
+
+//    public UserController(@Autowired UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     @GetMapping("/user/id/{id}")
     public ResponseEntity<Optional<User>> getUsers(@PathVariable int id) {
@@ -46,7 +55,9 @@ public class UserController {
         var usernameList = userRepository.findByUsername(username);
         var usernameStream = usernameList
                 .stream()
-                .filter(user -> user.getUsername().trim().toLowerCase().equals(username.trim().toLowerCase()))
+                .filter(user -> user.getUsername()
+                        .trim().toLowerCase()
+                        .equals(username.trim().toLowerCase()))
                 .collect(Collectors.toList());
 
                 return new ResponseEntity<>(usernameStream, HttpStatus.OK);
@@ -62,7 +73,7 @@ public class UserController {
             userRepository.save(user);
         }
 
-        return new Response().getMessage();
+        return "Success";
     }
 
     @DeleteMapping("/user/delete/username/{username}")
@@ -70,8 +81,9 @@ public class UserController {
         var listToDel = userRepository.findByUsername(username);
         listToDel
                 .stream()
-                .filter(d -> d.getUsername().toLowerCase().trim().equals(username.trim().toLowerCase()))
+                .filter(d -> d.getUsername().toLowerCase()
+                        .trim().equals(username.trim().toLowerCase()))
                 .forEach(userRepository::delete);
-        return new Response().getMessage();
+        return "User deleted";
     }
 }

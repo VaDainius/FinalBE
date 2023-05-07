@@ -26,4 +26,5 @@ public class ShoppingCart {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Helmet> helmets = new HashSet<>();
+
 }

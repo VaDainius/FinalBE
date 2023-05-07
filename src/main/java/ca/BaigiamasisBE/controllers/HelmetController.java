@@ -6,7 +6,6 @@ import ca.BaigiamasisBE.repositories.HelmetRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,13 +32,16 @@ public class HelmetController {
         );
     }
     @GetMapping("/helmet/price/{price}")
-    public ResponseEntity<List<Helmet>> helmetByPrice(@PathVariable int price) {
+    public ResponseEntity<List<Helmet>> helmetByPrice(@PathVariable int price) throws Exception {
 
         var helmetPriceList =helmetRepository.findByPrice(price);
         var helmetPriceStream = helmetPriceList
                 .stream()
                 .filter(h -> h.getPrice() == price)
                 .collect(Collectors.toList());
+        if (helmetPriceList.equals(" ")) {
+            throw new Exception("No such item by given price");
+        }
         return new ResponseEntity<>(helmetPriceStream,
                 HttpStatus.OK
         );
@@ -49,7 +51,8 @@ public class HelmetController {
         List<Helmet> helmet = helmetRepository.findByType(type);
         var helmetTypeList = helmet
                 .stream().
-                filter(helmet1 -> helmet1.getType().toLowerCase().trim().equals(type.toLowerCase().trim()))
+                filter(helmet1 -> helmet1.getType()
+                        .toLowerCase().trim().equals(type.toLowerCase().trim()))
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(helmetTypeList,

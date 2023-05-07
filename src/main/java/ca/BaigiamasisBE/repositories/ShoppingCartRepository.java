@@ -9,5 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> {
-    
+
+
+//    List<ShoppingCart> findByHelmet(Helmet helmet);
+
 }
