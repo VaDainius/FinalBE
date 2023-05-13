@@ -1,6 +1,7 @@
 package ca.BaigiamasisBE.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Data
 @NoArgsConstructor
+@Valid
 public class Helmet {
 
     @Id

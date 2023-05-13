@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -82,17 +83,16 @@ public class HelmetController {
         );
     }
     @PostMapping("/helmet/new")
-    public String newHelmet(@Valid Helmet helmet, BindingResult errors, HttpSession session) {
+    public ResponseEntity<Helmet> newHelmet(@RequestBody @Valid Helmet helmet, BindingResult errors) {
         if (errors.hasErrors()) {
-            return "/helmet/new";
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        helmetRepository.save(helmet);
-        return "redirect:/";
+        return new ResponseEntity<>(helmetRepository.save(helmet), HttpStatus.OK);
     }
 
     @DeleteMapping("/helmets")
-    public String deleteAll() {
+    public ResponseEntity<Helmet> deleteAll() {
         helmetRepository.deleteAll();
-        return "redirect:/";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

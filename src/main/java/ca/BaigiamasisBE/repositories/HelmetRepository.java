@@ -1,15 +1,13 @@
 package ca.BaigiamasisBE.repositories;
 
 import ca.BaigiamasisBE.entities.Helmet;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-@Component
+
+@Repository
 public interface HelmetRepository extends JpaRepository<Helmet, Integer> {
 
     Helmet findById(int id);
@@ -23,6 +21,4 @@ public interface HelmetRepository extends JpaRepository<Helmet, Integer> {
     List<Helmet> findByColor(String color);
 
     List<Helmet> findAll();
-
-    List<Helmet> findByManufacturerAndModel(String manufacturer, String model);
 }

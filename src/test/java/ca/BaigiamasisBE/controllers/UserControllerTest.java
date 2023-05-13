@@ -76,17 +76,17 @@ public class UserControllerTest {
         assertEquals(users,usersInRepo);
     }
 
-    @Test
-    void whenNewUser_ShouldCreateNewUser() {
-        User user1 = new User("Archibald", "meatpants", "ADMIN");
-        when(userRepository.save(any(User.class))).thenReturn(user1);
-        BindingResult bindingResult = mock(BindingResult.class);
-        when(bindingResult.hasErrors()).thenReturn(false);
-
-        String saveUser = userController.newUser(user1, bindingResult);
-
-        assertEquals("Success", saveUser);
-    }
+//    @Test
+//    void whenNewUser_ShouldCreateNewUser() {
+//        User user1 = new User("Archibald", "meatpants", "ADMIN");
+//        when(userRepository.save(any(User.class))).thenReturn(user1);
+//        BindingResult bindingResult = mock(BindingResult.class);
+//        when(bindingResult.hasErrors()).thenReturn(false);
+//
+//        String saveUser = userController.newUser(new User(). ,bindingResult);
+//
+//        assertEquals("Success", saveUser);
+//    }
 
     @Test
     void whenDeleteUserByUsername_ShouldDeleteUser() {

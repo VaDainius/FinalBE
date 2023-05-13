@@ -1,5 +1,6 @@
 package ca.BaigiamasisBE.controllers;
 
+import ca.BaigiamasisBE.entities.CartHelmetRequest;
 import ca.BaigiamasisBE.entities.Helmet;
 import ca.BaigiamasisBE.entities.ShoppingCart;
 import ca.BaigiamasisBE.repositories.HelmetRepository;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,15 @@ public class ShoppingCartController {
         return new ResponseEntity<>(new ArrayList<>(cartRepository.findAll()),
                 HttpStatus.OK
         );
+    }
+
+    @PostMapping("/cart/put")
+    public ResponseEntity<ShoppingCart> addToCart(@RequestBody CartHelmetRequest request) {
+        ShoppingCart cart = request.getCart();
+        Helmet helmet = request.getHelmet();
+        cart.getHelmets().add(helmet);
+        cart.setAddedAt(LocalDateTime.now());
+        return new ResponseEntity<>(cartRepository.save(cart), HttpStatus.OK);
     }
 
 //    @DeleteMapping("/cart/delete/{id}")
