@@ -1,5 +1,6 @@
 package ca.BaigiamasisBE.controllers;
 
+import ca.BaigiamasisBE.entities.Helmet;
 import ca.BaigiamasisBE.entities.User;
 import ca.BaigiamasisBE.repositories.HelmetRepository;
 import ca.BaigiamasisBE.repositories.UserRepository;
@@ -69,13 +70,13 @@ public class UserController {
     }
 
     @DeleteMapping("/user/delete/username/{username}")
-    public String deleteUserByUsername(@PathVariable String username) {
+    public ResponseEntity<Helmet> deleteUserByUsername(@PathVariable String username) {
         var listToDel = userRepository.findByUsername(username);
         listToDel
                 .stream()
                 .filter(d -> d.getUsername().toLowerCase()
                         .trim().equals(username.trim().toLowerCase()))
                 .forEach(userRepository::delete);
-        return "User deleted";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

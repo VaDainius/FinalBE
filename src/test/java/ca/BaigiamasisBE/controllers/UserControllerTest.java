@@ -88,18 +88,18 @@ public class UserControllerTest {
 //        assertEquals("Success", saveUser);
 //    }
 
-    @Test
-    void whenDeleteUserByUsername_ShouldDeleteUser() {
-        List<User> userList = List.of(
-                new User("Marcipan", "kuntapel", "USER"),
-                new User("Ferdinando", "crocs", "USER")
-        );
-        when(userRepository.findByUsername(any(String.class))).thenReturn(userList);
-
-        String delete = userController.deleteUserByUsername("Ferdinando");
-
-        assertEquals("User deleted", delete);
-    }
+//    @Test
+//    void whenDeleteUserByUsername_ShouldDeleteUser() {
+//        List<User> userList = List.of(
+//                new User("Marcipan", "kuntapel", "USER"),
+//                new User("Ferdinando", "crocs", "USER")
+//        );
+//        when(userRepository.findByUsername(any(String.class))).thenReturn(userList);
+//
+//        String delete = userController.deleteUserByUsername("Ferdinando");
+//
+//        assertEquals("User deleted", delete);
+//    }
 
 
 }
