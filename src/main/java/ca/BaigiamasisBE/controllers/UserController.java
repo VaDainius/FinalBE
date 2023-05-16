@@ -23,9 +23,6 @@ public class UserController {
 
     private HelmetRepository helmetRepository;
 
-//    public UserController (){
-//
-//    }
     public UserController(@Autowired UserRepository userRepository,
                           @Autowired HelmetRepository helmetRepository
     ) {
@@ -33,9 +30,6 @@ public class UserController {
         this.helmetRepository = helmetRepository;
     }
 
-//    public UserController(@Autowired UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
 
     @GetMapping("/user/id/{id}")
     public ResponseEntity<Optional<User>> getUsers(@PathVariable int id) {

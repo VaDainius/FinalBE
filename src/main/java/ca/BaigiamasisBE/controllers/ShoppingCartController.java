@@ -43,10 +43,11 @@ public class ShoppingCartController {
         return new ResponseEntity<>(cartRepository.save(cart), HttpStatus.OK);
     }
 
-//    @DeleteMapping("/cart/delete/{id}")
-//    public void deleteItem(@PathVariable int id) {
-//        cartRepository.deleteById(id);
-//    }
+    @DeleteMapping("/cart/delete/{id}")
+    public void deleteItem(@PathVariable int id) {
+        cartRepository.deleteById(id);
+    }
+
 //    @DeleteMapping("/cart/delete/{manufacturer}/{model}")
 //    public void deleteItem(@PathVariable String manufacturer, @PathVariable String model) {
 //        Helmet helmet = helmetRepository.findByManufacturerAndModel(manufacturer, model).stream().findAny()
